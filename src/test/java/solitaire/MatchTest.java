@@ -104,4 +104,21 @@ public class MatchTest {
 
         assertNotEquals(match, match2);
     }
+
+    @Test
+    public void hashEquals_Test() {
+        Top top2 = new Top(new int[]{1,2,3,4,5,6,7,8});
+        Deck deck2 = new Deck(new Card[]{card1, card2, card3, card1, card3}, 2);
+
+        Card[][] columns = new Card[10][];
+        columns[0] = new Card[]{card1, card2};
+        columns[1] = new Card[]{card3, card4};
+        for (int i = 2; i < 10; i ++){
+            columns[i] = new Card[0];
+        }
+        Board board2 = new Board(columns);
+        Match match2 = new Match(top2, board2, deck2);
+
+        assertEquals(match.hashCode(), match2.hashCode());
+    }
 }

@@ -20,4 +20,9 @@ public class Match {
         Match otherMatch = (Match) other;
         return this.top.equals(otherMatch.top) && this.deck.equals(otherMatch.deck) && this.board.equals(otherMatch.board);
     }
+
+    @Override
+    public int hashCode() {
+        return top.hashCode() ^ board.hashCode() ^ deck.hashCode();
+    }
 }
