@@ -53,13 +53,13 @@ public class CardTest {
     @Test
     public void ordinalLo() {
         Card card = new Card(Card.Suit.Clubs, 1);
-        assertEquals(0, card.getOrdinal());
+        assertEquals(1, card.getOrdinal());
     }
 
     @Test
     public void ordinalHi() {
         Card card = new Card(Card.Suit.Spades, 13);
-        assertEquals(51, card.getOrdinal());
+        assertEquals(52, card.getOrdinal());
     }
 
     @Test

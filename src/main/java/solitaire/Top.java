@@ -17,7 +17,7 @@ public class Top {
     }
 
     public Top(Top other, Card card) throws Exception{
-        this.top = other.top;
+        this.top = Arrays.copyOf(other.top, 8);
         if (other.top[card.getSuit().ordinal()] == card.getValue() - 1) {
             this.top[card.getSuit().ordinal()] += 1;
         }

@@ -48,12 +48,12 @@ public class BoardTest {
         Board board = new Board(columns);
         Board board2 = new Board(board, card5, 3);
         Card[][] get_columns = board2.getColumns();
-        assertEquals(card1, get_columns[7][0]);
-        assertEquals(card2, get_columns[7][1]);
+        assertEquals(card1, get_columns[8][0]);
+        assertEquals(card2, get_columns[8][1]);
         assertEquals(card3, get_columns[9][0]);
         assertEquals(card4, get_columns[9][1]);
         assertEquals(0, get_columns[2].length);
-        assertEquals(card5, get_columns[8][0]);
+        assertEquals(card5, get_columns[7][0]);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class BoardTest {
         }
         Board board1 = new Board(columns1);
 
-        assertEquals(14l ,Board.columnValue(columns1[8]));
+        assertEquals(68 ,Board.columnValue(columns1[8]));
     }
 
     @Test
@@ -145,7 +145,7 @@ public class BoardTest {
         }
         Board board1 = new Board(columns1);
 
-        assertEquals(card3.getOrdinal() * 52 + card4.getOrdinal() ,Board.columnValue(columns1[9]));
+        assertEquals(card3.getOrdinal() * 53 + card4.getOrdinal() ,Board.columnValue(columns1[9]));
     }
 
     @Test
@@ -158,7 +158,7 @@ public class BoardTest {
         }
         Board board1 = new Board(columns1);
 
-        assertEquals(0l ,Board.columnValue(columns1[0]));
+        assertEquals(0 ,Board.columnValue(columns1[0]));
     }
 
     @Test
@@ -222,5 +222,27 @@ public class BoardTest {
         Board goalBoard = new Board(goalColumns);
 
         assertEquals(goalBoard, Board.createRearrangedBoard(board, 9,8));
+    }
+
+    @Test
+    public void removeFromColumnConstructor_Test() {
+        Card[][] columns = new Card[10][];
+        columns[0] = new Card[]{card1, card2};
+        columns[1] = new Card[]{card3, card4};
+        for (int i = 2; i < 10; i ++){
+            columns[i] = new Card[0];
+        }
+        Board board = new Board(columns);
+
+        Card[][] goalColumns = new Card[10][];
+        goalColumns[0] = new Card[]{card1};
+        goalColumns[1] = new Card[]{card3, card4};
+        for (int i = 2; i < 10; i ++){
+            goalColumns[i] = new Card[0];
+        }
+        Board goalBoard = new Board(goalColumns);
+        Board actualBoard = new Board(board, 8);
+
+        assertEquals(goalBoard, actualBoard);
     }
 }

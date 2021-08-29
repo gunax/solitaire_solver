@@ -23,6 +23,7 @@ public class Match {
         moves.addAll(deckToBoardMoves());
         moves.addAll(deckToTopMoves());
         moves.addAll(boardRearrangeMoves());
+        moves.addAll(boardToTopMoves());
 
         return moves;
     }
@@ -86,7 +87,6 @@ public class Match {
                 if (startCol == endCol) {
                     continue;
                 }
-
                 if (columns[endCol].length == 0 && !movedToEmpty) {
                     Board new_board = Board.createRearrangedBoard(board, startCol, endCol);
                     moves.add(new Match(top, new_board, deck, num_moves + 1));
@@ -95,6 +95,28 @@ public class Match {
                 else if (columns[endCol].length > 0){
                     Board new_board = Board.createRearrangedBoard(board, startCol, endCol);
                     moves.add(new Match(top, new_board, deck, num_moves + 1));
+                }
+            }
+        }
+        return moves;
+    }
+
+    private List<Match> boardToTopMoves() {
+        ArrayList<Match> moves = new ArrayList<>();
+        Card[][] columns = board.getColumns();
+        for (int col = 0; col < 10; col++) {
+            if (columns[col].length == 0) {
+                continue;
+            }
+            Card bottom_card = columns[col][columns[col].length - 1];
+            if (top.canAdd(bottom_card)){
+                try {
+                    Top new_top = new Top(top, bottom_card);
+                    Board new_board = new Board(board, col);
+                    moves.add(new Match(new_top, new_board, deck, num_moves + 1));
+                }
+                catch(Exception e) {
+                    System.out.println("Tried to move a board card to invalid top. Oops.");
                 }
             }
         }
@@ -114,5 +136,9 @@ public class Match {
     @Override
     public int hashCode() {
         return top.hashCode() ^ board.hashCode() ^ deck.hashCode();
+    }
+
+    public boolean finished() {
+        return top.full();
     }
 }

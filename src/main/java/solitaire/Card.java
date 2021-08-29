@@ -2,7 +2,7 @@ package solitaire;
 
 public class Card {
     public int getOrdinal() {
-        return this.suit.ordinal() * 13 + this.getValue() - 1;
+        return this.suit.ordinal() * 13 + this.getValue();
     }
 
     public enum Suit {

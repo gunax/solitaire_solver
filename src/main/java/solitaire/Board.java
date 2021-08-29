@@ -38,6 +38,18 @@ public class Board {
         return new Board(new_columns);
     }
 
+    public Board(Board last, int colToRemoveFrom) {
+        for (int i = 0; i < 10; i ++) {
+            if (i != colToRemoveFrom) {
+                this.columns[i] = last.columns[i];
+            }
+            else {
+                this.columns[i] = Arrays.copyOf(last.columns[i], last.columns[i].length - 1);
+            }
+        }
+        sort();
+    }
+
     public Board(Board last, Card card, int col) {
         for (int i = 0; i < 10; i ++) {
             if (i != col) {
@@ -60,7 +72,7 @@ public class Board {
         int shift = 1;
         for (int i = 0; i < col.length; i++) {
             val *= shift;
-            shift *= 52;
+            shift *= 53;
             val += col[i].getOrdinal();
         }
         return val;
