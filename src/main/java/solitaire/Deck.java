@@ -27,6 +27,37 @@ public class Deck {
         return cards[position];
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Deck) {
+            Deck otherDeck = (Deck) other;
+            if (otherDeck.position != this.position) {
+                return false;
+            }
+            if (otherDeck.cards.length != this.cards.length) {
+                return false;
+            }
+            for (int i = 0; i < cards.length; i++) {
+                if (!otherDeck.cards[i].equals(this.cards[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        final int prime = 31;
+        for (Card card : cards) {
+            hash = 31 * (hash ^ card.hashCode());
+        }
+        return hash ^ position;
+    }
+
     public Deck draw() {
         Card[] new_cards = new Card[cards.length - 1];
         for (int i = 0; i < position; i++) {
