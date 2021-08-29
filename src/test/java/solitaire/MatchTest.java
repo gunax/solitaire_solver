@@ -145,4 +145,47 @@ public class MatchTest {
 
         assertTrue(children.contains(goalMatch));
     }
+
+    @Test
+    public void childrenMoveDeckToTop_Test() {
+        Top startTop = new Top(new int[]{1,2,3,2,5,6,7,8});
+        Deck startDeck = new Deck(new Card[]{card1, card2, card3, card4, new Card(Card.Suit.Spades, 3)}, 4);
+        Match startMatch = new Match(startTop, board, startDeck, 1);
+
+        Top goalTop = new Top(new int[]{1,2,3,3,5,6,7,8});
+        Board goalBoard = new Board(board, new Card(Card.Suit.Spades, 3), 9);
+        Deck goalDeck = new Deck(new Card[]{card1, card2, card3, card4}, 3);
+        Match goalMatch = new Match(goalTop, goalBoard, goalDeck, 2);
+        List<Match> children = startMatch.moves();
+
+        assertTrue(children.contains(goalMatch));
+    }
+
+    @Test
+    public void rearrangeBoardMoves_Test() {
+        Card[][] columns = new Card[10][];
+        columns[0] = new Card[]{card1, card2};
+        columns[1] = new Card[]{card3, card4};
+        columns[2] = new Card[]{card5};
+        for (int i = 3; i < 10; i ++){
+            columns[i] = new Card[0];
+        }
+        Board startBoard = new Board(columns);
+
+        Card[][] goalColumns = new Card[10][];
+        goalColumns[0] = new Card[]{card1, card2};
+        goalColumns[1] = new Card[]{card3};
+        goalColumns[2] = new Card[]{card5, card4};
+        for (int i = 3; i < 10; i ++){
+            goalColumns[i] = new Card[0];
+        }
+        Board goalBoard = new Board(goalColumns);
+
+        Match startMatch = new Match(top, startBoard, deck, 0);
+        Match goalMatch = new Match(top, goalBoard, deck, 1);
+
+        List<Match> result = startMatch.moves();
+
+        assertTrue(result.contains(goalMatch));
+    }
 }
