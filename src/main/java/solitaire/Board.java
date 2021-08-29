@@ -19,6 +19,25 @@ public class Board {
         sort();
     }
 
+    public static Board createRearrangedBoard(Board last, int origin_col, int destination_col) {
+        Card[][] old_columns = last.getColumns();
+        Card[][] new_columns = new Card[10][];
+        Card the_card = old_columns[origin_col][old_columns[origin_col].length - 1];
+        for (int i = 0; i < 10; i++) {
+            if (i == origin_col) {
+                new_columns[i] = Arrays.copyOfRange(old_columns[i], 0, old_columns[i].length - 1);
+            }
+            else if (i == destination_col) {
+                new_columns[i] = Arrays.copyOf(old_columns[i], old_columns[i].length + 1);
+                new_columns[i][new_columns[i].length - 1] = the_card;
+            }
+            else {
+                new_columns[i] = old_columns[i];
+            }
+        }
+        return new Board(new_columns);
+    }
+
     public Board(Board last, Card card, int col) {
         for (int i = 0; i < 10; i ++) {
             if (i != col) {

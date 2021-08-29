@@ -202,4 +202,25 @@ public class BoardTest {
 
         assertEquals(board1.hashCode(), board2.hashCode());
     }
+
+    @Test
+    public void rearrangeBoardTest() {
+        Card[][] columns = new Card[10][];
+        columns[0] = new Card[]{card1, card2};
+        columns[1] = new Card[]{card3, card4};
+        for (int i = 2; i < 10; i ++){
+            columns[i] = new Card[0];
+        }
+        Board board = new Board(columns);
+
+        Card[][] goalColumns = new Card[10][];
+        goalColumns[0] = new Card[]{card1, card2, card4};
+        goalColumns[1] = new Card[]{card3};
+        for (int i = 2; i < 10; i ++){
+            goalColumns[i] = new Card[0];
+        }
+        Board goalBoard = new Board(goalColumns);
+
+        assertEquals(goalBoard, Board.createRearrangedBoard(board, 9,8));
+    }
 }
