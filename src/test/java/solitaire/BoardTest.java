@@ -48,12 +48,12 @@ public class BoardTest {
         Board board = new Board(columns);
         Board board2 = new Board(board, card5, 3);
         Card[][] get_columns = board2.getColumns();
-        assertTrue(get_columns[7][0].equals(card1));
-        assertTrue(get_columns[7][1].equals(card2));
-        assertTrue(get_columns[9][0].equals(card3));
-        assertTrue(get_columns[9][1].equals(card4));
-        assertTrue(get_columns[2].length == 0);
-        assertTrue(get_columns[8][0].equals(card5));
+        assertEquals(card1, get_columns[7][0]);
+        assertEquals(card2, get_columns[7][1]);
+        assertEquals(card3, get_columns[9][0]);
+        assertEquals(card4, get_columns[9][1]);
+        assertEquals(0, get_columns[2].length);
+        assertEquals(card5, get_columns[8][0]);
     }
 
     @Test

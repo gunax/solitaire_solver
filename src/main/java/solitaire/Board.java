@@ -61,13 +61,20 @@ public class Board {
         return hash;
     }
 
-    public boolean equals(Board other) {
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Board)) {
+            return false;
+        }
+
+        Board otherBoard = (Board) other;
+
         for (int col = 0; col < 10; col++) {
-            if (this.columns[col].length != other.columns[col].length) {
+            if (this.columns[col].length != otherBoard.columns[col].length) {
                 return false;
             }
             for (int i = 0; i < this.columns[col].length; i++) {
-                if (!this.columns[col][i].equals(other.columns[col][i])) {
+                if (!this.columns[col][i].equals(otherBoard.columns[col][i])) {
                     return false;
                 }
             }
