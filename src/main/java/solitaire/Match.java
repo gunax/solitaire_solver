@@ -1,7 +1,6 @@
 package solitaire;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Match {
@@ -140,5 +139,9 @@ public class Match {
 
     public boolean finished() {
         return top.full();
+    }
+
+    public int size() {
+        return top.size();
     }
 }

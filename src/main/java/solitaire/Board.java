@@ -9,8 +9,8 @@ public class Board {
 
     public Board() {
         //empty board
-        for (Card[] col : columns) {
-            col = new Card[0];
+        for (int i = 0; i < 10; i++) {
+            columns[i] = new Card[0];
         }
     }
 

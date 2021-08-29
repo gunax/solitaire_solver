@@ -30,11 +30,15 @@ public class Top {
     }
 
     public boolean full() {
+        return this.size() == 13 * 8;
+    }
+
+    public int size() {
         int sum = 0;
         for (int i = 0; i < 8; i++) {
             sum += top[i];
         }
-        return sum == 13 * 8;
+        return sum;
     }
 
     public boolean canAdd(Card card) {
