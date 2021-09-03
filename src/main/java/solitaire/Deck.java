@@ -71,4 +71,17 @@ public class Deck {
         }
         return new Deck(new_cards, position - 1);
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < position; i++) {
+            sb.append(cards[i].toString() + " ");
+        }
+        sb.append(cards[position].toString().toUpperCase() + " ");
+        for(int i = position + 1; i < cards.length; i++) {
+            sb.append(cards[i].toString() + " ");
+        }
+
+        return sb.toString();
+    }
 }

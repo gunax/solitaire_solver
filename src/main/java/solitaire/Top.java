@@ -75,4 +75,8 @@ public class Top {
         return false;
     }
 
+    public String toString() {
+        return Arrays.toString(top);
+    }
+
 }

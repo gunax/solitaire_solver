@@ -77,12 +77,17 @@ public class App {
         Match start = new Match(new Top(), App.getTheBoard(), App.getTheDeck(), 0);
         queue.add(start);
         examined_matches.add(start);
+        int biggest_size = 0;
 
         while (!queue.isEmpty()) {
             Match next_match = queue.poll();
+            if (next_match.size() > biggest_size) {
+                System.out.println(next_match.size());
+                biggest_size = next_match.size();
+            }
 
             //check if done
-            if (next_match.size() == 4) {
+            if (next_match.size() == 15) {
                 long time_taken = (java.lang.System.currentTimeMillis() - start_time)/1000;
                 System.out.println("Found solution in " + time_taken);
                 System.out.println(next_match);

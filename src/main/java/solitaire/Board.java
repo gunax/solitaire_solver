@@ -112,4 +112,26 @@ public class Board {
         }
         return true;
     }
+
+    public String toString() {
+        int colsLeft = 10;
+        StringBuilder sb = new StringBuilder();
+
+        for(int row = 0; colsLeft > 0; row++) {
+            for (int col = 0; col < 10; col++) {
+                if (columns[col].length == row) {
+                    colsLeft--;
+                    sb.append("     |");
+                }
+                else if (columns[col].length > row) {
+                    sb.append(columns[col][row] + "|");
+                }
+                else {
+                    sb.append("     |");
+                }
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }

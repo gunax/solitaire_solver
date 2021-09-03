@@ -144,4 +144,9 @@ public class Match {
     public int size() {
         return top.size();
     }
+
+    @Override
+    public String toString() {
+        return top.toString() + "\n======\n" + board.toString() + "\n=====\n" + deck.toString();
+    }
 }
